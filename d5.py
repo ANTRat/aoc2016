@@ -2,13 +2,12 @@ import hashlib
 
 puzzle_input = open('input/d5.txt').read().strip()
 
-
 def run(door):
     i = 0
     code1 = []
     code2 = [None, None, None, None, None, None, None, None]
     while True:
-        s = "{}{}".format(door, i).encode()
+        s = (door + str(i)).encode()
         h = hashlib.md5(s).hexdigest()
         if h[:5] == '00000':
             if len(code1) <= 7:
@@ -17,12 +16,9 @@ def run(door):
                 code2[int(h[5])] = h[6]
             print(i, h, code1, code2)
         i += 1
-        try:
-            if len(code1) == len(code2) == 8:
-                # noinspection PyTypeChecker
-                return ''.join(code1), ''.join(code2)
-        except TypeError:
-            pass
+        if len(code1) == 8 and None not in code2:
+            # noinspection PyTypeChecker
+            return ''.join(code1), ''.join(code2)
 
 
 # assert run('abc') == ('18f47a30', '05ace8e3')
