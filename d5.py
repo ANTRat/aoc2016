@@ -2,6 +2,7 @@ import hashlib
 
 puzzle_input = open('input/d5.txt').read().strip()
 
+
 def run(door):
     i = 0
     code1 = []
