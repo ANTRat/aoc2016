@@ -1,5 +1,3 @@
-from collections import Counter
-
 puzzle_input = open('input/d8.txt').read().strip().split('\n')
 
 
@@ -27,7 +25,7 @@ def run(puzzle):
                 col.append(screen[x][a])
             for i, x in enumerate(rotate(col, b)):
                 screen[i][a] = x
-    part1 = Counter(''.join(map(''.join, screen)))['1']
+    part1 = ''.join(map(''.join, screen)).count('1')
     part2 = '\n' + '\n'.join(map(''.join, screen)).replace('0', ' ').replace('1', '#')
     return part1, part2
 
